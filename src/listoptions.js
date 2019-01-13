@@ -8,7 +8,6 @@ function initOptions() {
     <button id="d_task">Delete</button>
     </div>`;
   renderElement('#body', options);
-  addTask();
 }
 
 function createtask(title, priority, desc) {
@@ -24,24 +23,35 @@ function createtask(title, priority, desc) {
 
 function collectInfo() {
   let title = document.getElementById('title').value;
-  let priority = document.getElementById('priority').value;
   let desc = document.getElementById('desc').value;
-
-  createtask(title, priority, desc);
+  let priority = document.querySelectorAll('#priority');
+  let p_val = '';
+  for(let i = 0; i < priority.length; ++i)
+    if(priority[i].checked)
+      p_val = priority[i].value;
+  createtask(title, p_val, desc);
 }
 
 function resetForm () {
   let title = document.getElementById('title').value = '';
-  let priority = document.getElementById('priority').value = '';
   let desc = document.getElementById('desc').value = '';
+  let priority = document.querySelectorAll('#priority');
+
+  for(let i = 0; i < priority.length; ++i)
+    priority[i].checked = false;
 }
 
 function closeForm(modal) {
+  if(!modal)
+    return;
   modal.style.display = "none";
 }
 function openForm (modal) {
+  if(!modal)
+    return;
   modal.style.display = 'block';
 }
+
 function formManager() {
   let modal = document.getElementById('myModal');
   var btn = document.getElementById("n_task");
@@ -60,19 +70,17 @@ function formManager() {
     if (event.target == modal)
       closeForm(modal);
   }
-
 }
 
 function deleteTask() {
 
 }
 
-function addTask() {
-  document.getElementById('n_task').onclick = function() {
-    formManager();
-  }
-  document.getElementById('d_task').onclick = function() {
-    console.log('deleted'); };
+function initTaskHandlers() {
+  let newTask = document.getElementById('n_task');
+  let delTask = document.getElementById('d_task');
+  newTask.onclick = function() { formManager(); }
+  delTask.onclick = function() { console.log('deleted'); };
 }
 
-export {initOptions, addTask};
+export {initOptions, initTaskHandlers};

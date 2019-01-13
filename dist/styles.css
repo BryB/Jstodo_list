@@ -19,6 +19,21 @@ body {
   font-family: arial;
 }
 
+.column {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+#Title {
+  width: 100%;
+  padding: 10px;
+  height: 20px; 
+}
+
+#priority {
+  width: 25px;
+}
 
 #tabs {
   background-color: #e25248;
@@ -139,7 +154,7 @@ body {
   padding: 2px 16px;
   justify-content: center;
   align-items: center;
-  display: inline-block;
+  text-align: center;
 }
 
 .textField {

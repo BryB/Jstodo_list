@@ -48,14 +48,17 @@ http://kenwheeler.github.io/slick/ -->
     </div>
     <div class="modal-body">
       <form method="GET">
-            <input id="title" class="textField" name="title" type="text"
-              placeholder="Title" required>
-            <br>
-            <input id="priority" class="textField" name="priority" type="text"
-              placeholder="priority" required>
-            <br>
-            <textarea id="desc" class="textField" name="description"
-              placeholder="Description" required></textarea>
+        <input id="title" class="textField" name="title" type="text"
+          placeholder="Title" required>
+        <br>
+        <label>Priority</label>
+        <div class="column">
+          <input id="priority" type="radio" name="priority" value="Low">Low
+          <input id="priority" type="radio" name="priority" value="Medium">Medium
+          <input id="priority" type="radio" name="priority" value="High">High
+        </div>
+          <textarea id="desc" class="textField" name="description"
+            placeholder="Description" required></textarea>
       </form>
     </div>
     <div class="modal-footer">
