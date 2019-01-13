@@ -23,31 +23,44 @@ function createtask(title, priority, desc) {
 }
 
 function collectInfo() {
-  // Get the modal
-  var modal = document.getElementById('myModal');
+  let title = document.getElementById('title').value;
+  let priority = document.getElementById('priority').value;
+  let desc = document.getElementById('desc').value;
 
-  // Get the button that opens the modal
+  createtask(title, priority, desc);
+}
+
+function resetForm () {
+  let title = document.getElementById('title').value = '';
+  let priority = document.getElementById('priority').value = '';
+  let desc = document.getElementById('desc').value = '';
+}
+
+function closeForm(modal) {
+  modal.style.display = "none";
+}
+function openForm (modal) {
+  modal.style.display = 'block';
+}
+function formManager() {
+  let modal = document.getElementById('myModal');
   var btn = document.getElementById("n_task");
+  var span = document.querySelector(".close");
+  let submitButton = document.getElementById('f_button');
 
-  // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
+  btn.onclick = function() { openForm(modal); }
+  span.onclick = function() { closeForm(modal); }
 
-  // When the user clicks the button, open the modal
-  btn.onclick = function() {
-    modal.style.display = "block";
-  }
-
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function() {
-    modal.style.display = "none";
-  }
-
-  // When the user clicks anywhere outside of the modal, close it
+  submitButton.addEventListener('click', e => {
+    collectInfo();
+    resetForm();
+    closeForm(modal);
+});
   window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
+    if (event.target == modal)
+      closeForm(modal);
   }
+
 }
 
 function deleteTask() {
@@ -55,10 +68,11 @@ function deleteTask() {
 }
 
 function addTask() {
-  document.getElementById('n_task').addEventListener('click', e =>
-  { collectInfo(); });
-  document.getElementById('d_task').addEventListener('click', e =>
-  { console.log('deleted'); });
+  document.getElementById('n_task').onclick = function() {
+    formManager();
+  }
+  document.getElementById('d_task').onclick = function() {
+    console.log('deleted'); };
 }
 
 export {initOptions, addTask};

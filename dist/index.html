@@ -44,14 +44,22 @@ http://kenwheeler.github.io/slick/ -->
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
-      <h2>Modal Header</h2>
+      <h1>Create Task</h1>
     </div>
     <div class="modal-body">
-      <p>Some text in the Modal Body</p>
-      <p>Some other text...</p>
+      <form method="GET">
+            <input id="title" class="textField" name="title" type="text"
+              placeholder="Title" required>
+            <br>
+            <input id="priority" class="textField" name="priority" type="text"
+              placeholder="priority" required>
+            <br>
+            <textarea id="desc" class="textField" name="description"
+              placeholder="Description" required></textarea>
+      </form>
     </div>
     <div class="modal-footer">
-      <h3>Modal Footer</h3>
+      <button id="f_button" class="btn" type="submit"><h1>Submit</h1></button>
     </div>
   </div>
 </div>
