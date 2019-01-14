@@ -5,7 +5,6 @@ import {renderElement} from './helpers.js';
 function initOptions() {
   let options = `<div class="topnav">
     <button id="n_task">New</button>
-    <button id="d_task">Delete</button>
     </div>`;
   renderElement('#body', options);
 }
@@ -13,12 +12,14 @@ function initOptions() {
 function createtask(title, priority, desc) {
   if(!title || !priority || !desc)
     return;
+  let delButton = `<button id="del">X</button><br>`;
   let task = `<div id="tasks">`;
   let task_title = `<h1>${title}</h1>`;
   let task_priority = `<h1>${priority}</h1>`;
   let description = `<p>${desc}</p>`;
-  task += task_title + task_priority + description + '</div>';
+  task += delButton + task_title + task_priority + description + '</div>';
   renderElement('#wrapper', task);
+  initDeleteButton();
 }
 
 function collectInfo() {
@@ -29,6 +30,7 @@ function collectInfo() {
   for(let i = 0; i < priority.length; ++i)
     if(priority[i].checked)
       p_val = priority[i].value;
+
   createtask(title, p_val, desc);
 }
 
@@ -73,14 +75,16 @@ function formManager() {
 }
 
 function deleteTask() {
+  let button = document.getElementById('del');
 
+  button.onclick = function() {
+    button.parentNode.remove();
+  }
 }
 
-function initTaskHandlers() {
+function initTaskHandler() {
   let newTask = document.getElementById('n_task');
-  let delTask = document.getElementById('d_task');
   newTask.onclick = function() { formManager(); }
-  delTask.onclick = function() { console.log('deleted'); };
 }
 
-export {initOptions, initTaskHandlers};
+export {initOptions, initTaskHandler};
