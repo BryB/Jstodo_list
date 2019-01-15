@@ -35,7 +35,7 @@ body {
   width: 25px;
 }
 
-#del {
+.del {
   color: white;
   float: left;
   border: 0;
@@ -92,7 +92,7 @@ body {
     overflow-x: hidden;
     text-align: center;
 }
-#tasks {
+.tasks {
   white-space: normal;
   display: inline-block;
   padding: 5px;

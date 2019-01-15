@@ -1,5 +1,5 @@
 import {renderElement} from './helpers.js';
-
+import {taskManager} from './index.js';
 // TODO: must clean-up css file and rename classes/id's.
 
 function initOptions() {
@@ -12,10 +12,10 @@ function initOptions() {
 function createtask(title, priority, desc) {
   if(!title || !priority || !desc)
     return;
-  let delButton = `<button id="del">X</button><br>`;
-  let task = `<div id="tasks">`;
+  let delButton = `<button id="${taskManager.getId()}"class="del">X</button><br>`;
+  let task = `<div class="tasks">`;
   let task_title = `<h1>${title}</h1>`;
-  let task_priority = `<h1>${priority}</h1>`;
+  let task_priority = `<h1>Priority: ${priority}</h1>`;
   let description = `<p>${desc}</p>`;
   task += delButton + task_title + task_priority + description + '</div>';
   renderElement('#wrapper', task);
@@ -74,11 +74,19 @@ function formManager() {
   }
 }
 
-function deleteTask() {
-  let button = document.getElementById('del');
+function locateDeleteTask() {
+  return;
+}
 
-  button.onclick = function() {
-    button.parentNode.remove();
+function initDeleteButton() {
+  let button = taskManager.getId();
+  taskManager.storeId();
+  taskManager.incId();
+
+  document.getElementById(button).onclick = function() {
+    if(taskManager.retrieveId() === button)
+      console.log("found it");
+    //button.parentNode.remove();
   }
 }
 
