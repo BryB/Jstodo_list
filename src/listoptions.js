@@ -45,34 +45,34 @@ function resetForm () {
     priority[i].checked = false;
 }
 
-function closeForm(modal) {
-  if(!modal)
+function closeForm(form) {
+  if(!form)
     return;
-  modal.style.display = "none";
+  form.style.display = "none";
 }
-function openForm (modal) {
-  if(!modal)
+function openForm (form) {
+  if(!form)
     return;
-  modal.style.display = 'block';
+  form.style.display = 'block';
 }
 
 function formManager() {
-  let modal = document.getElementById('myModal');
+  let form = document.getElementById('form');
   var btn = document.getElementById("n_task");
   var span = document.querySelector(".close");
   let submitButton = document.getElementById('f_button');
 
-  btn.onclick = function() { openForm(modal); }
-  span.onclick = function() { closeForm(modal); }
+  btn.onclick = function() { openForm(form); }
+  span.onclick = function() { closeForm(form); }
 
   submitButton.addEventListener('click', e => {
     collectInfo();
     resetForm();
-    closeForm(modal);
+    closeForm(form);
 });
   window.onclick = function(event) {
-    if (event.target == modal)
-      closeForm(modal);
+    if (event.target == form)
+      closeForm(form);
   }
 }
 
