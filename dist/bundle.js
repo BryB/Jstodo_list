@@ -166,7 +166,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"initTabs\", function() { return initTabs; });\n/* harmony import */ var _helpers_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers.js */ \"./src/helpers.js\");\n\r\n\r\nfunction initTabs() {\r\n  let tabs = `<div id=\"tabs\"><button id='tab'>+</button></div>`;\r\n  Object(_helpers_js__WEBPACK_IMPORTED_MODULE_0__[\"renderElement\"])('#body', tabs);\r\n}\r\n\r\n\r\n\n\n//# sourceURL=webpack:///./src/tabs.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"initTabs\", function() { return initTabs; });\n/* harmony import */ var _helpers_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers.js */ \"./src/helpers.js\");\n\r\n\r\nfunction initTabs() {\r\n  let addTab = `<div id=\"tabs\"><button id='tab'>+</button></div>`;\r\n  let defaultTab = `<div id=\"tabs\"><button id='tab'>List</button></div>`;\r\n  let tabs = addTab + defaultTab\r\n  Object(_helpers_js__WEBPACK_IMPORTED_MODULE_0__[\"renderElement\"])('#body', tabs);\r\n}\r\n\r\n\r\n\n\n//# sourceURL=webpack:///./src/tabs.js?");
 
 /***/ })
 
