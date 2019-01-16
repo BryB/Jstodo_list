@@ -9,17 +9,22 @@ const taskManager = (() => {
   let ids = [];
   const getId = () => `id${id}`;
   const incId = () => ++id;
+  const getIds = () => ids;
   const storeId = () => {
     ids.push(getId());
   };
-  const retrieveId = (ele) => {
-    return ids.filter(id => id.indexof(ele) > -1);
+  const verifyId = (ele) => {
+    for(let i = 0; i < ids.length; ++i)
+      if(ids[i] === ele)
+        return true
+    return false;
   };
   return {
     getId,
     incId,
     storeId,
-    retrieveId,
+    verifyId,
+    getIds,
   };
 })();
 

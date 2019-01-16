@@ -10,16 +10,18 @@ function initOptions() {
 }
 
 function createtask(title, priority, desc) {
+  let id = taskManager.getId();
   if(!title || !priority || !desc)
     return;
-  let delButton = `<button id="${taskManager.getId()}"class="del">X</button><br>`;
-  let task = `<div class="tasks">`;
+  let delButton = `<button id="${id} "class="del">X</button><br>`;
+  let task = `<div id="${id}" class="tasks">`;
   let task_title = `<h1>${title}</h1>`;
   let task_priority = `<h1>Priority: ${priority}</h1>`;
   let description = `<p>${desc}</p>`;
   task += delButton + task_title + task_priority + description + '</div>';
   renderElement('#wrapper', task);
-  initDeleteButton();
+  let button = document.getElementById(id);
+  initDeleteButton(button);
 }
 
 function collectInfo() {
@@ -74,20 +76,16 @@ function formManager() {
   }
 }
 
-function locateDeleteTask() {
-  return;
-}
-
-function initDeleteButton() {
-  let button = taskManager.getId();
+function initDeleteButton(button) {
   taskManager.storeId();
   taskManager.incId();
-
-  document.getElementById(button).onclick = function() {
-    if(taskManager.retrieveId() === button)
-      console.log("found it");
-    //button.parentNode.remove();
-  }
+  let buttons  = document.querySelectorAll('.del');
+  for(let i = 0; i < buttons.length; ++i)
+  {
+    buttons[i].addEventListener('click', e => {
+      buttons[i].parentNode.remove();
+  });
+}
 }
 
 function initTaskHandler() {
