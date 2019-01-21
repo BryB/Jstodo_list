@@ -24,10 +24,20 @@ function createtask(title, priority, desc) {
   initDeleteButton(button);
 }
 
+function formatTime(time) {
+  time = time.split('');
+  let formatted = time.slice(5,7).join('') + '/'
+  + time.slice(8,10).join('') + '/' + time.slice(0,4).join('');
+  console.log(time);
+  let regtime = time.slice(11);
+  console.log(regtime);
+}
+
 function collectInfo() {
   let title = document.getElementById('title').value;
   let desc = document.getElementById('desc').value;
   let priority = document.querySelectorAll('#priority');
+  let time = formatTime(document.getElementById('time').value);
   let p_val = '';
   for(let i = 0; i < priority.length; ++i)
     if(priority[i].checked)
