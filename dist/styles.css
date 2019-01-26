@@ -35,19 +35,23 @@ body {
   text-decoration: none;
 }
 
-#tabs {
+.tabs {
   background-color: #e25248;
-  padding-left: 1rem;
+  display: block;
+  float: left;
 }
 
-#tab {
-  background-color: #f1f1f1;
-  box-shadow: none;
+.tab {
   border: 0;
-  text-decoration:none;
-  color: black;
-  padding: 10px 20px;
-  border-color: white;
+  background: none;
+  box-shadow: none;
+  color: white;
+  padding: 15px 20px;
+  margin-right: 5px;
+  display: block;
+  float: left;
+  text-align: center;
+  font-size: 25px;
 }
 .topnav {
   display: -webkit-flex;

@@ -5,7 +5,6 @@ function renderContainer() {
   <section id="wrapper">
   </section>
   </section>`;
-
   renderElement('#body', container);
 }
 
