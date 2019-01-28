@@ -3,4 +3,16 @@ function renderElement(id, element) {
   content.innerHTML += element;
 }
 
-export {renderElement};
+
+function closeForm(form) {
+  if(!form)
+    return;
+  form.style.display = "none";
+}
+function openForm (form) {
+  if(!form)
+    return;
+  form.style.display = 'block';
+}
+
+export {renderElement, closeForm, openForm};

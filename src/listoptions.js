@@ -1,4 +1,4 @@
-import {renderElement} from './helpers.js';
+import {renderElement, closeForm, openForm} from './helpers.js';
 import {taskManager} from './index.js';
 // TODO: must clean-up css file and rename classes/id's.
 
@@ -61,17 +61,6 @@ function resetForm () {
     priority[i].checked = false;
 }
 
-function closeForm(form) {
-  if(!form)
-    return;
-  form.style.display = "none";
-}
-function openForm (form) {
-  if(!form)
-    return;
-  form.style.display = 'block';
-}
-
 function formManager() {
   let form = document.getElementById('form');
   var btn = document.getElementById("n_task");
@@ -100,8 +89,8 @@ function initDeleteButton(button) {
   {
     buttons[i].addEventListener('click', e => {
       buttons[i].parentNode.remove();
-  });
-}
+    });
+  }
 }
 
 function initTaskHandler() {
