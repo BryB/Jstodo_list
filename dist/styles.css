@@ -35,24 +35,6 @@ body {
   text-decoration: none;
 }
 
-.tabs {
-  background-color: #e25248;
-  display: block;
-  float: left;
-}
-
-.tab {
-  border: 0;
-  background: none;
-  box-shadow: none;
-  color: white;
-  padding: 15px 20px;
-  margin-right: 5px;
-  display: block;
-  float: left;
-  text-align: center;
-  font-size: 25px;
-}
 .topnav {
   display: -webkit-flex;
   display: flex;
@@ -201,21 +183,24 @@ body {
   color: white;
 }
 
+.tabs {
+  background-color: #e25248;
+  display: block;
+  float: left;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.tab {
+  border: 0;
+  background: none;
+  box-shadow: none;
+  color: white;
+  padding: 15px 20px;
+  margin-right: 5px;
+  display: block;
+  float: left;
+  text-align: center;
+  font-size: 25px;
+}
 
 .tab-form {
   display: none;
@@ -324,8 +309,6 @@ body {
   from {opacity: 0}
   to {opacity: 1}
 }
-
-
 
 footer {
   margin-bottom: auto;

@@ -1,9 +1,10 @@
 import {initHeader} from './header.js';
-import {initTabs, tabManager} from './tabs.js';
+import {tabManager} from './tabs.js';
 import {initOptions, initTaskHandler} from './listOptions.js';
 import {initFooter} from './footer.js';
 import {renderContainer} from './listContainer.js';
 import {initForm} from './initForm.js';
+import {initTabs} from './initTabs.js';
 
 const taskManager = (() => {
   let id = 0;

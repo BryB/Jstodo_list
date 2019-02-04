@@ -9,7 +9,7 @@ function closeForm(form) {
     return;
   form.style.display = "none";
 }
-function openForm (form) {
+function openForm(form) {
   if(!form)
     return;
   form.style.display = 'block';
