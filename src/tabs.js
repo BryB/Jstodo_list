@@ -1,10 +1,20 @@
 import {renderElement, closeForm, openForm} from './helpers.js';
+import {taskManager} from './index.js';
+
+function delNode () {
+  let button = document.querySelectorAll('.del_list');
+}
 
 function createNewTab(name)
 {
   if (!name)
     return;
-  renderElement('.tabs', `<div><button class="tab">${name}</button></div>`);
+  let newTab = `<div class="tab"><button class="del_list">x</button>
+                  <div>
+                    <button class="list">${name}</button>
+                  </div>
+                </div>`;
+  renderElement('.tabs', newTab);
 }
 
 function collect_Info(info) {

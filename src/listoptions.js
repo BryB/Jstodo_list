@@ -15,6 +15,7 @@ function initDeleteButton(button) {
   for(let i = 0; i < buttons.length; ++i)
   {
     buttons[i].addEventListener('click', e => {
+      taskManager.remId(buttons[i].id);
       buttons[i].parentNode.remove();
     });
   }

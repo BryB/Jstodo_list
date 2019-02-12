@@ -202,6 +202,25 @@ body {
   font-size: 25px;
 }
 
+.list {
+  border: 0;
+  background: none;
+  box-shadow: none;
+  color: white;
+  font-size: 20px;
+  padding-left: 20px;
+}
+
+.del_list {
+  color: white;
+  float: left;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0px;
+  text-decoration: none;
+}
+
 .tab-form {
   display: none;
   position: fixed;

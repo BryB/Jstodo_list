@@ -35,9 +35,11 @@ function initTabs() {
                   <button id="add_tab" class="tab">+</button>
                 </div>`;
   let tablist = `<div class="tabs">`;
-  let defaultTab = `<button class="tab"
-                    style="padding-left: 1rem;">List
-                    </button>`;
+  let defaultTab = `<div class="tab"><button class="del_list">x</button>
+                  <div>
+                    <button class="list">List</button>
+                  </div>
+                </div>`;
   tablist += defaultTab + `</div>`;
   initTabForm();
   renderElement('#body', addtab);
