@@ -1,41 +1,53 @@
-import {renderElement, closeForm, openForm} from './helpers.js';
-import {taskManager} from './index.js';
+import * as helper from './helpers.js';
+import {manager, projectList, project, task} from './taskManager.js';
 
 function initOptions() {
   let options = `<div class="topnav">
     <button id="n_task">New</button>
     </div>`;
-  renderElement('#body', options);
+  helper.renderElement('#body', options);
 }
 
-function initDeleteButton(button) {
-  taskManager.storeId();
-  taskManager.incId();
+
+// Gotta come up with an optimal method of deleting tasks.
+function initDeleteButton() {
   let buttons  = document.querySelectorAll('.del');
   for(let i = 0; i < buttons.length; ++i)
   {
     buttons[i].addEventListener('click', e => {
-      taskManager.remId(buttons[i].id);
+      let currentProject = projectList.getProject(manager.viewLi());
+      let id = translateId(parseInt(buttons[i].id), currentProject);
+      currentProject.deleteTask(currentProject.tasks[id]);
       buttons[i].parentNode.remove();
     });
   }
 }
 
-function createtask(title, priority, time, desc) {
-  let id = taskManager.getId();
-  if(!title || !priority || !desc)
-    return;
-  let task = `<div id="${id}" class="tasks">`;
+function rendertask(id, title, priority, date, desc)
+{
+  let body = `<div id="${id}" class="tasks">`;
   let delButton = `<button id="${id} "class="del">X</button><br>`;
   let task_title = `<h1>${title}</h1>`;
   let task_priority = `<h1>Priority: ${priority}</h1>`;
-  let task_time = `<h4>Due: ${time}</h4>`;
+  let task_time = `<h4>Due: ${date}</h4>`;
   let description = `<p>${desc}</p>`;
-  task += delButton + task_title + task_priority + task_time + description + '</div>';
-  renderElement('#wrapper', task);
-  let button = document.getElementById(id);
-  initDeleteButton(button);
+  body += delButton + task_title + task_priority + task_time + description + '</div>';
+  helper.renderElement('#wrapper', body);
 }
+
+function createtask(title, priority, time, desc) {
+
+  if(!title || !priority || !time || !desc)
+    return;
+  const newTask = new task(manager.getId(), title, priority, time, desc);
+  let currentProject = projectList.getProject(manager.viewLi());
+  currentProject.addTask(newTask);
+  manager.incId();
+  rendertask(newTask.id, title, priority, time, desc);
+  initDeleteButton();
+
+}
+
 function formatTime(time) {
   time = time.split('');
   let formatted = time.slice(5,7).join('') + '/'
@@ -78,17 +90,17 @@ function formManager() {
   let span = document.querySelector(".close");
   let submitButton = document.getElementById('f_button');
 
-  btn.onclick = function() { openForm(form); }
-  span.onclick = function() { closeForm(form); }
+  btn.onclick = function() { helper.openForm(form); }
+  span.onclick = function() { helper.closeForm(form); }
 
   submitButton.addEventListener('click', e => {
     collectInfo();
     resetForm();
-    closeForm(form);
+    helper.closeForm(form);
 });
   window.onclick = function(event) {
     if (event.target == form)
-      closeForm(form);
+      helper.closeForm(form);
   }
 }
 
@@ -97,4 +109,4 @@ function initTaskHandler() {
   newTask.onclick = function() { formManager(); }
 }
 
-export {initOptions, initTaskHandler};
+export {initOptions, initTaskHandler, rendertask};

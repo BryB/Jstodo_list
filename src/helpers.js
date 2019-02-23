@@ -3,6 +3,11 @@ function renderElement(id, element) {
   content.innerHTML += element;
 }
 
+function translateId(id, projects) {
+  for(let i = 0; i < projects.length; ++i)
+    if(projects[i].id == id)
+      return i;
+}
 
 function closeForm(form) {
   if(!form)
@@ -15,4 +20,4 @@ function openForm(form) {
   form.style.display = 'block';
 }
 
-export {renderElement, closeForm, openForm};
+export {renderElement, closeForm, openForm, translateId};

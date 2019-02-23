@@ -1,4 +1,5 @@
 import {renderElement} from './helpers.js';
+import {createNewTab} from './tabs.js';
 
 function initTabManager()
 {
@@ -30,17 +31,10 @@ function initTabForm() {
 }
 
 function initTabs() {
-  let addtab = `<div style="padding-left: 1rem;
-                            background-color: #e25248;">
+  let addtab = `<div style="padding-left: 1rem;background-color: #e25248;">
                   <button id="add_tab" class="tab">+</button>
                 </div>`;
-  let tablist = `<div class="tabs">`;
-  let defaultTab = `<div class="tab"><button class="del_list">x</button>
-                  <div>
-                    <button class="list">List</button>
-                  </div>
-                </div>`;
-  tablist += defaultTab + `</div>`;
+  let tablist = `<div class="tabs"></div>`;
   initTabForm();
   renderElement('#body', addtab);
   renderElement('#body', tablist);

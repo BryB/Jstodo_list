@@ -1,20 +1,57 @@
-import {renderElement, closeForm, openForm} from './helpers.js';
-import {taskManager} from './index.js';
+import * as helper from './helpers.js';
+import {manager, project, projectList} from './taskManager.js';
+import {rendertask} from './listoptions.js';
 
-function delNode () {
-  let button = document.querySelectorAll('.del_list');
+function deleteProject(id) {
+  let project = projectList.getProject(id);
+  projectList.deleteProject(project);
+  document.getElementById(`id${id}`).parentNode.remove();
+}
+
+// function to render the tasks within the project.
+function renderProject(id) {
+  let project = projectList.getProject(helper.translateId(id, projectList.getAllProjects()));
+  let tasks = project.tasks;
+  manager.setLi(id);
+  for(let i = 0; i < tasks.length; ++i)
+    rendertask(tasks[i].id, tasks[i].title,
+                tasks[i].priority, tasks[i].date, tasks[i].description);
+}
+
+function refreshFunctionality () {
+  let del_Buttons = document.querySelectorAll(`.del_list`);
+  let buttons = document.querySelectorAll('.list');
+  let id = 0;
+  for(let i = 0; i < del_Buttons.length; ++i)
+  {
+    del_Buttons[i].addEventListener('click', e => {
+      id = parseInt(buttons[i].id.split('').slice(2).join(''));
+      deleteProject(id);
+    });
+  }
+  for(let i = 0; i < buttons.length; ++i)
+  {
+    buttons[i].addEventListener('click', e => {
+      id = parseInt(buttons[i].id.split('').slice(2).join(''));
+      renderProject(id)
+    });
+  }
 }
 
 function createNewTab(name)
 {
   if (!name)
     return;
-  let newTab = `<div class="tab"><button class="del_list">x</button>
+  const newProject = new project(name);
+  projectList.addProject(newProject);
+  manager.incLi();
+  let newTab = `<div class="tab"><button id="id${newProject.id}"class="del_list">x</button>
                   <div>
-                    <button class="list">${name}</button>
+                    <button id="id${newProject.id}" class="list">${newProject.name}</button>
                   </div>
                 </div>`;
-  renderElement('.tabs', newTab);
+  helper.renderElement('.tabs', newTab);
+  refreshFunctionality();
 }
 
 function collect_Info(info) {
@@ -31,16 +68,16 @@ function tabManager () {
   let submitButton = document.getElementById('tab_submit');
   let title = document.getElementById('tab_title');
 
-  btn.onclick = function() { openForm(form); }
+  btn.onclick = function() { helper.openForm(form); }
 
   submitButton.addEventListener('click', e => {
     collect_Info(title);
     resetInfo(title);
-    closeForm(form);
+    helper.closeForm(form);
   });
   window.onclick = function(event) {
     if (event.target == form)
-      closeForm(form);
+      helper.closeForm(form);
   }
 }
 
