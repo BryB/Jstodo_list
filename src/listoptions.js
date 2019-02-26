@@ -8,15 +8,14 @@ function initOptions() {
   helper.renderElement('#body', options);
 }
 
-
-// Gotta come up with an optimal method of deleting tasks.
-function initDeleteButton() {
-  let buttons  = document.querySelectorAll('.del');
+function addFunctionality() {
+  let buttons = document.querySelectorAll('.del');
+  let id = 0;
   for(let i = 0; i < buttons.length; ++i)
   {
     buttons[i].addEventListener('click', e => {
       let currentProject = projectList.getProject(manager.viewLi());
-      let id = translateId(parseInt(buttons[i].id), currentProject);
+      let id = parseInt(buttons[i].id);
       currentProject.deleteTask(currentProject.tasks[id]);
       buttons[i].parentNode.remove();
     });
@@ -37,15 +36,15 @@ function rendertask(id, title, priority, date, desc)
 
 function createtask(title, priority, time, desc) {
 
-  if(!title || !priority || !time || !desc)
+  if(!title || !priority || !time || !desc
+    || projectList.getAllProjects().length <= 0)
     return;
   const newTask = new task(manager.getId(), title, priority, time, desc);
   let currentProject = projectList.getProject(manager.viewLi());
   currentProject.addTask(newTask);
   manager.incId();
   rendertask(newTask.id, title, priority, time, desc);
-  initDeleteButton();
-
+  addFunctionality();
 }
 
 function formatTime(time) {

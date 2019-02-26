@@ -11,24 +11,8 @@ const manager = (() => {
 	const setLi = (nVal) => vli = nVal;
   const incId = () => ++id;
 	const incLi = () => ++li;
-	const decLi = () => --li;
-  const remId = (list,id) => {
-    id = id.split('');
-    let index = id.slice(2).join('');
-    lists = lists[list].splice(parseInt(index, 10), 0);
-  };
 	const resetId = () => id = 0;
-  return {
-    getId,
-		getLi,
-		viewLi,
-		setLi,
-    incId,
-		incLi,
-		decLi,
-    remId,
-		resetId,
-  };
+  return { getId, getLi, viewLi, setLi, incId, incLi, resetId };
 })();
 
 const projectList = (() => {
