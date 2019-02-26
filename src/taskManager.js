@@ -1,6 +1,3 @@
-// create a set function that changes
-// the current list to the one clicked.
-// done. must create a var that allows user to  view current list
 const manager = (() => {
   let id = 0;
   let li = 0;
@@ -11,8 +8,7 @@ const manager = (() => {
 	const setLi = (nVal) => vli = nVal;
   const incId = () => ++id;
 	const incLi = () => ++li;
-	const resetId = () => id = 0;
-  return { getId, getLi, viewLi, setLi, incId, incLi, resetId };
+  return { getId, getLi, viewLi, setLi, incId, incLi };
 })();
 
 const projectList = (() => {
@@ -58,16 +54,8 @@ function task (id, title, priority, date, description) {
   this.priority = priority;
   this.date = date;
   this.description = description;
-  this.completed = false;
-
 
 	return {id, title, priority, date, description};
 }
-
-task.prototype.isCompleted = function () {
-	this.completed = !this.completed;
-};
-
-
 
 export{manager, task, project, projectList};

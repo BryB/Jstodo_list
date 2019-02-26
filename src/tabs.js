@@ -11,7 +11,6 @@ function deleteProject(id) {
   document.getElementById(`id${id}`).parentNode.remove();
 }
 
-// function to render the tasks within the project.
 function renderProject(id) {
   let project = projectList.getProject(helper.translateId(id, projectList.getAllProjects()));
   let tasks = project.tasks;

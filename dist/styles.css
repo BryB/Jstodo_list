@@ -65,7 +65,6 @@ body {
 
 #wrapper {
     white-space: nowrap;
-    overflow-x: hidden;
     text-align: center;
 }
 .tasks {
